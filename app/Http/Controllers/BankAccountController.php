@@ -8,11 +8,13 @@ use App\Http\Requests\UpdateBankAccountRequest;
 
 class BankAccountController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+
+        $this->middleware('auth');
+
+    }
+
     public function index()
     {
         //
@@ -25,18 +27,20 @@ class BankAccountController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreBankAccountRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreBankAccountRequest $request)
+    public function store()
     {
-        //
+
+        $BankAccount = new BankAccount;
+        $user = auth()->user();
+        $BankAccount->counts = '2022'.rand(1000,9999);
+        $BankAccount->balance = 0;
+        $BankAccount->user_id = $user->id;
+
+        $BankAccount->save();
+
     }
 
     /**

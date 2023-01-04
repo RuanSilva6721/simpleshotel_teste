@@ -16,9 +16,9 @@
                 </div>
             <div class="text-center align-self-md-center">
                 <div class="col-md-12  dashboard-title-container">
-                    <h2>Ações</h2>
+                    <h3>Ações</h3>
                 </div>
-                
+               
                 @include('table')
 
             </div>

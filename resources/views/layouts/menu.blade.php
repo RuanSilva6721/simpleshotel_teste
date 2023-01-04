@@ -44,10 +44,19 @@
                 </li>
 
 
-                <li class="nav-item dropdown">
-                    <a  class="nav-link" href="{{ route('car.create') }}" ">
-                       Adicionar Carro
-                    </a>
+                <li class="nav-item dropdown">        
+                    <a  class="nav-link" href="#">
+                        @foreach  ($user->BankAccount as $conta)
+                       Conta: {{ $conta->counts }}
+                    @endforeach  
+                     </a>
+                </li>
+                <li class="nav-item dropdown">        
+                    <a  class="nav-link" href="#">
+                        @foreach  ($user->BankAccount as $conta)
+                       Saldo: R${{ $conta->balance }}
+                    @endforeach  
+                     </a>
                 </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

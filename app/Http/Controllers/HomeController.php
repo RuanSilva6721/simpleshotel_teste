@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Http\Controllers\BankAccountController;
 
 class HomeController extends Controller
 {
@@ -15,9 +16,19 @@ class HomeController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $cars = $user->car()->simplePaginate(5);
+        $BankAccountController = new BankAccountController;
+        // dd($user->BankAccount());
+  
+        ;
+        if($user->BankAccount->count() <= 0){
 
-        return view('home', ['cars' => $cars]);
+            $BankAccountController->store();
+
+            return view('home',['user' => $user]);
+        }else{
+            return view('home', ['user' => $user]);
+        }
+     
     }
 
 }
