@@ -10,21 +10,23 @@ use PHPUnit\Exception;
 
 class BankAccountController extends Controller
 {
-    public function __construct()
+    private $BankAccountService;
+    public function __construct(BankAccountService $BankAccountService)
     {
+        $this->BankAccountService = $BankAccountService;
 
         $this->middleware('auth');
 
     }
 
-    public function store(BankAccountService $BankAccountService)
+    public function store()
     {
         try {
-            $BankAccountService->store();
-            return redirect()->route('home')->with('msg', 'Conta adicionada com sucesso!');
+            $this->BankAccountService->store();
+            return view('home')->with('msg', 'Conta adicionada com sucesso!');
 
         } catch (Exception $e) {
-            return redirect()->route('home')->with('msg2', 'Falha ao tentar adiconar a conta carro!');
+            return view('home')->with('msg2', 'Falha ao tentar adiconar a conta carro!');
         }
 
 
@@ -48,6 +50,6 @@ class BankAccountController extends Controller
 
     public function destroy(BankAccount $bankAccount)
     {
-        
+
     }
 }

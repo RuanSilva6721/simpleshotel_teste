@@ -11,7 +11,7 @@ class BankAccountRepositoryEloquent implements BankAccountRepository{
         return  DB::transaction(function () {
             $BankAccount = new BankAccount;
             $user = auth()->user();
-            $BankAccount->counts = '2022'.rand(1000,9999);
+            $BankAccount->counts = '2023'.rand(1000,9999);
             $BankAccount->balance = 0;
             $BankAccount->user_id = $user->id;
     

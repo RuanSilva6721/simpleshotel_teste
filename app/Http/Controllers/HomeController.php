@@ -13,22 +13,18 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(BankAccountController $BankAccountController)
     {
         $user = auth()->user();
-        $BankAccountController = new BankAccountController;
-        // dd($user->BankAccount());
-  
         ;
         if($user->BankAccount->count() <= 0){
 
             $BankAccountController->store();
 
-            return view('home',['user' => $user]);
         }else{
             return view('home', ['user' => $user]);
         }
-     
+
     }
 
 }

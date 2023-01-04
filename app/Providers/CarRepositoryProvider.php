@@ -15,12 +15,12 @@ class CarRepositoryProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(CarRepository::class, CarRepositoryEloquent::class);
-        
+
     }
 
-  
+
     public function boot()
     {
-        
+
     }
 }

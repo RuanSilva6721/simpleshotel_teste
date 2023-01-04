@@ -175,7 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\CarRepositoryProvider::class,
-        App\Providers\CarMaintenceRepositoryProvider::class,
+        App\Providers\BankAccountRepositoryProvider::class,
 
     ],
 
