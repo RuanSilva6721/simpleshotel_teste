@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\BankAccount;
 use App\Http\Requests\StoreBankAccountRequest;
 use App\Http\Requests\UpdateBankAccountRequest;
+use App\Services\BankAccountService;
+use PHPUnit\Exception;
 
 class BankAccountController extends Controller
 {
@@ -15,76 +17,37 @@ class BankAccountController extends Controller
 
     }
 
-    public function index()
+    public function store(BankAccountService $BankAccountService)
     {
-        //
-    }
+        try {
+            $BankAccountService->store();
+            return redirect()->route('home')->with('msg', 'Conta adicionada com sucesso!');
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
+        } catch (Exception $e) {
+            return redirect()->route('home')->with('msg2', 'Falha ao tentar adiconar a conta carro!');
+        }
 
-    }
 
-    public function store()
-    {
-
-        $BankAccount = new BankAccount;
-        $user = auth()->user();
-        $BankAccount->counts = '2022'.rand(1000,9999);
-        $BankAccount->balance = 0;
-        $BankAccount->user_id = $user->id;
-
-        $BankAccount->save();
 
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\BankAccount  $bankAccount
-     * @return \Illuminate\Http\Response
-     */
-    public function show(BankAccount $bankAccount)
+    public function sacar()
     {
-        //
+        return view('bank.withdraw');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\BankAccount  $bankAccount
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(BankAccount $bankAccount)
+
+    public function depositar()
     {
-        //
+        return view('bank.deposit');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateBankAccountRequest  $request
-     * @param  \App\Models\BankAccount  $bankAccount
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateBankAccountRequest $request, BankAccount $bankAccount)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\BankAccount  $bankAccount
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(BankAccount $bankAccount)
     {
-        //
+        
     }
 }

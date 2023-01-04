@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BankAccountController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,14 +24,15 @@ Route::match(['get', 'post'],'/', function () {
 Auth::routes();
 //home
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+//user
 Route::delete('/home/delete', [UserController::class, 'destroy'])->name('home.delete');
 Route::get('/home/edit', [UserController::class, 'edit'])->name('home.edit');
 
-//cars
-Route::get('/car/create/', [CarController::class, 'create'])->name('car.create');
-Route::post('/car/store/', [CarController::class, 'store'])->name('car.store');
-Route::get('/car/edit/{id}', [CarController::class, 'edit'])->name('car.edit');
-Route::put('/car/update/{id}', [CarController::class, 'update'])->name('car.update');
-Route::delete('/car/destroy/{id}', [CarController::class, 'destroy'])->name('car.destroy');
+
+//bank
+Route::get('home/bank/sacar', [BankAccountController::class, 'sacar'])->name('bank.sacar');
+Route::get('home/bank/depositar', [BankAccountController::class, 'depositar'])->name('bank.depositar');
+
 
 

@@ -46,14 +46,14 @@
 
                 <li class="nav-item dropdown">        
                     <a  class="nav-link" href="#">
-                        @foreach  ($user->BankAccount as $conta)
+                        @foreach  (Auth::user()->BankAccount as $conta)
                        Conta: {{ $conta->counts }}
                     @endforeach  
                      </a>
                 </li>
                 <li class="nav-item dropdown">        
                     <a  class="nav-link" href="#">
-                        @foreach  ($user->BankAccount as $conta)
+                        @foreach  ( Auth::user()->BankAccount  as $conta)
                        Saldo: R${{ $conta->balance }}
                     @endforeach  
                      </a>
