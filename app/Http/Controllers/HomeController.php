@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
-use App\Models\User;
+
 class HomeController extends Controller
 {
     public function __construct()
@@ -20,11 +20,4 @@ class HomeController extends Controller
         return view('home', ['cars' => $cars]);
     }
 
-    public function destroy()
-    {
-        $user = auth()->user();
-        USer::findOrFail($user->id)->delete();
-
-        return redirect('/');
-    }
 }

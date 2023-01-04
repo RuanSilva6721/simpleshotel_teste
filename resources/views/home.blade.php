@@ -14,9 +14,9 @@
                         </div>
                     @endif
                 </div>
-            <div class="text-center">
-                <div class="col-md-12   dashboard-title-container">
-                    <h1>Listar de Carros</h1>
+            <div class="text-center align-self-md-center">
+                <div class="col-md-12  dashboard-title-container">
+                    <h2>Ações</h2>
                 </div>
                 
                 @include('table')

@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CarController;
-use App\Http\Controllers\CarMaintenanceController;
-
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,8 +22,9 @@ Route::match(['get', 'post'],'/', function () {
 
 Auth::routes();
 //home
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::delete('/home/delete', [App\Http\Controllers\HomeController::class, 'destroy'])->name('home.delete');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::delete('/home/delete', [UserController::class, 'destroy'])->name('home.delete');
+Route::get('/home/edit', [UserController::class, 'edit'])->name('home.edit');
 
 //cars
 Route::get('/car/create/', [CarController::class, 'create'])->name('car.create');

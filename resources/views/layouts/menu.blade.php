@@ -55,11 +55,11 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">editar conta
+                            <a class="dropdown-item" href="{{ route('home.edit') }}">Editar conta
                             </a>
-    
 
-                            <a  href="#" class="dropdown-item"  onclick="confirmDelete()"> deletar conta
+
+                            <a  href="#" class="dropdown-item"  onclick="confirmDelete()"> Deletar conta
                                 <form id="MyFormUserDelete" action="{{ route('home.delete') }}" method="POST">
                                     @csrf
                                     @method('DELETE')
