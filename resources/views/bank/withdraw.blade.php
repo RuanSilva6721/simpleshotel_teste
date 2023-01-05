@@ -4,18 +4,15 @@
 
 <div class="col-md-6 offset-md-3">
     <h1>Sacar</h1>
-    <form action="#" method="POST" enctype="multipart/form-data">
-        @csrf
-    <div class="form-group">
-        <label for="modelCar">Modelo</label>
-        <input type="text" class="form-control" id="modelCar" name="modelCar" placeholder="Modelo do Carro" required>
-    </div>
-    <div class="form-group">
-        <label for="brandCar">Marca</label>
-        <input type="text" class="form-control" id="brandCar" name="brandCar" placeholder="Marca do Carro" required>
-    </div>
+    <form action="{{route('bank.withdrawConfirm')}}" method="POST" enctype="multipart/form-data">
 
-    <input type="submit" class="btn btn-primary" value="Adicionar Carro">
+        @csrf
+        @method('PUT')
+    <div class="form-group">
+        <label for="MoneyWithdraw">Valor a Sacar</label>
+        <input type="number" class="form-control" id="MoneyWithdraw" name="MoneyWithdraw" placeholder="Digite o valor que deseja sacar" required>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Sacar">
     </form>
 </div>
 

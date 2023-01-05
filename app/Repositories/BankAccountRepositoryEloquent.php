@@ -14,35 +14,61 @@ class BankAccountRepositoryEloquent implements BankAccountRepository{
             $BankAccount->counts = '2023'.rand(1000,9999);
             $BankAccount->balance = 0;
             $BankAccount->user_id = $user->id;
-    
+
             $BankAccount->save();
- 
+
          });
-          
+
     }
     // public function edit($id){
-        
-    //     return Car::findOrFail($id);
-          
-    // }
-    // public function update(Request $request){
 
-    //     return  DB::transaction(function () use ($request) {
-            
-    //     $data = $request->all();
-    //     Car::findOrFail($request->id)->update($data);
- 
-    //      });
-          
+    //     return Car::findOrFail($id);
+
     // }
+    public function depositConfirm(Request $request, $id){
+
+        return  DB::transaction(function () use ($request, $id) {
+
+        $BankAccount = BankAccount::find($id);
+        $data = $request->all();
+        $BankAccount->balance = $data['MoneyDeposit'] + $BankAccount->balance;
+        $BankAccount->update();
+
+         });
+
+    }
+    public function withdrawConfirm(Request $request, $id){
+        
+
+        return  DB::transaction(function () use ($request, $id) {
+
+        $BankAccount = BankAccount::find($id);
+        $data = $request->all();
+
+        if($data['MoneyWithdraw'] > $BankAccount->balance){
+            DB::rollBack();
+            return redirect()->route('home')->with('msg2', 'Falha ao tentar saque na conta!');
+
+        }else{
+
+            $BankAccount->balance =  $BankAccount->balance - $data['MoneyWithdraw'];
+            $BankAccount->update();
+            DB::commit();
+        }
+        
+
+
+         });
+
+    }
     // public function destroy($id){
-        
+
     //       Car::findOrFail($id)->delete();
-          
+
     // }
- 
-        
-       
+
+
+
 
 
 

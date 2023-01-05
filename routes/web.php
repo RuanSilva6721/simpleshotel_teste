@@ -33,6 +33,8 @@ Route::get('/home/edit', [UserController::class, 'edit'])->name('home.edit');
 //bank
 Route::get('home/bank/sacar', [BankAccountController::class, 'sacar'])->name('bank.sacar');
 Route::get('home/bank/depositar', [BankAccountController::class, 'depositar'])->name('bank.depositar');
+Route::put('home/bank/depositarConfirmado', [BankAccountController::class, 'depositConfirm'])->name('bank.depositConfirm');
+Route::put('home/bank/sacarConfirmado', [BankAccountController::class, 'withdrawConfirm'])->name('bank.withdrawConfirm');
 
 
 
