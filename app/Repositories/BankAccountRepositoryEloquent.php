@@ -29,8 +29,13 @@ class BankAccountRepositoryEloquent implements BankAccountRepository{
 
         return  DB::transaction(function () use ($request, $id) {
 
+
         $BankAccount = BankAccount::find($id);
         $data = $request->all();
+        if($data['MoneyDeposit']< 0){
+                $data['MoneyDeposit'] = 0;
+        }
+
         $BankAccount->balance = $data['MoneyDeposit'] + $BankAccount->balance;
         $BankAccount->update();
 
@@ -45,7 +50,7 @@ class BankAccountRepositoryEloquent implements BankAccountRepository{
         $BankAccount = BankAccount::find($id);
         $data = $request->all();
 
-        if($data['MoneyWithdraw'] > $BankAccount->balance){
+        if($data['MoneyWithdraw'] > $BankAccount->balance  || $data['MoneyWithdraw']< 0){
             DB::rollBack();
             return redirect()->route('home')->with('msg2', 'Saldo insuficiente na conta!');
 
