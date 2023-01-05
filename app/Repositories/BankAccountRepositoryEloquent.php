@@ -47,13 +47,14 @@ class BankAccountRepositoryEloquent implements BankAccountRepository{
 
         if($data['MoneyWithdraw'] > $BankAccount->balance){
             DB::rollBack();
-            return redirect()->route('home')->with('msg2', 'Falha ao tentar saque na conta!');
+            return redirect()->route('home')->with('msg2', 'Saldo insuficiente na conta!');
 
         }else{
 
             $BankAccount->balance =  $BankAccount->balance - $data['MoneyWithdraw'];
             $BankAccount->update();
             DB::commit();
+            return redirect()->route('home')->with('msg', 'Saque realizado com sucesso!');
         }
         
 

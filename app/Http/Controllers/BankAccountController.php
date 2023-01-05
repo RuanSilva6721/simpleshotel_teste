@@ -56,8 +56,8 @@ class BankAccountController extends Controller
     public function withdrawConfirm(Request $request)
     {
         try {
-            $this->BankAccountService->withdrawConfirm($request);
-            return redirect()->route('home')->with('msg', 'Saque realizado com sucesso!');
+            return $this->BankAccountService->withdrawConfirm($request);
+            
 
         } catch (Exception $e) {
             return redirect()->route('home')->with('msg2', 'Falha ao tentar saque na conta!');
