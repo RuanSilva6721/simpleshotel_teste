@@ -20,9 +20,10 @@ class HomeController extends Controller
         if($user->BankAccount->count() <= 0){
 
             $BankAccountController->store();
+            return redirect()->route('home')->with('msg', 'Conta adicionada com sucesso!');
 
         }else{
-            return view('home', ['user' => $user]);
+            return view('home');
         }
 
     }

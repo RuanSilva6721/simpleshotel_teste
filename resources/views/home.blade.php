@@ -15,6 +15,8 @@
                     @endif
                 </div>
             <div class="text-center align-self-md-center">
+                @include('graphic')
+
                 <div class="col-md-12  dashboard-title-container">
                     <h3>Ações</h3>
                 </div>
