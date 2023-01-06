@@ -3,7 +3,7 @@ namespace App\Repositories;
 use App\Models\BankAccount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Log;
 class BankAccountRepositoryEloquent implements BankAccountRepository{
 
     public function store(){
@@ -27,15 +27,17 @@ class BankAccountRepositoryEloquent implements BankAccountRepository{
     // }
     public function depositConfirm(Request $request, $id){
 
-        return  DB::transaction(function () use ($request, $id) {
+        return DB::transaction(function () use ($request, $id) {
 
-
+            $log = new Log();
         $BankAccount = BankAccount::find($id);
         $data = $request->all();
         if($data['MoneyDeposit']< 0){
                 $data['MoneyDeposit'] = 0;
         }
-
+        $log->action = "deposito";
+        $log->date = date("Y/m/d");
+            $log->save();
         $BankAccount->balance = $data['MoneyDeposit'] + $BankAccount->balance;
         $BankAccount->update();
 
@@ -43,10 +45,10 @@ class BankAccountRepositoryEloquent implements BankAccountRepository{
 
     }
     public function withdrawConfirm(Request $request, $id){
-        
+
 
         return  DB::transaction(function () use ($request, $id) {
-
+            $log = new Log();
         $BankAccount = BankAccount::find($id);
         $data = $request->all();
 
@@ -55,13 +57,16 @@ class BankAccountRepositoryEloquent implements BankAccountRepository{
             return redirect()->route('home')->with('msg2', 'Saldo insuficiente na conta!');
 
         }else{
+            $log->action = "saque";
+            $log->date = date("Y/m/d");
+                $log->save();
 
             $BankAccount->balance =  $BankAccount->balance - $data['MoneyWithdraw'];
             $BankAccount->update();
             DB::commit();
             return redirect()->route('home')->with('msg', 'Saque realizado com sucesso!');
         }
-        
+
 
 
          });

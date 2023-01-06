@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function index(BankAccountController $BankAccountController)
     {
         $user = auth()->user();
-        Log::channel('main')->info('houve um login');
+        //Log::channel('main')->info('houve um login');
         if($user->BankAccount->count() <= 0){
 
             $BankAccountController->store();

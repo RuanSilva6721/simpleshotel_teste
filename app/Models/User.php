@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\BankAccount;
+use App\Models\Log;
 
 class User extends Authenticatable
 {
@@ -42,5 +43,9 @@ class User extends Authenticatable
     public function BankAccount()
     {
         return $this->hasMany(BankAccount::class);
+    }
+    public function Log()
+    {
+        return $this->hasMany(Log::class);
     }
 }

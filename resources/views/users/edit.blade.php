@@ -9,11 +9,11 @@
         @method('PUT')
     <div class="form-group">
         <label for="email">E-mail</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="digite o seu email" required value="{{$user->email}}" Readonly >
+        <input type="email" class="form-control" id="email" name="email" placeholder="digite o seu email" required value="{{$user->email}}" Disabled >
     </div>
     <div class="form-group">
         <label for="cpf">Cpf</label>
-        <input type="text" class="form-control" id="cpf" name="cpf" placeholder="digite o seu cpf" required value="{{$user->cpf}}" Readonly >
+        <input type="text" class="form-control" id="cpf" name="cpf" placeholder="digite o seu cpf" required value="{{$user->cpf}}" Disabled >
     </div>
     <div class="form-group">
         <label for="name">Nome</label>
