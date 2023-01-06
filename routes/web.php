@@ -28,6 +28,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 //user
 Route::delete('/home/delete', [UserController::class, 'destroy'])->name('home.delete');
 Route::get('/home/edit', [UserController::class, 'edit'])->name('home.edit');
+Route::put('/home/update/{id}', [UserController::class, 'update'])->name('home.update');
 
 
 //bank
