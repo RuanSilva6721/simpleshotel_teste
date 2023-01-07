@@ -18,8 +18,6 @@ class HomeController extends Controller
         $LogController =  new LogController();
         $log = $LogController->show($user);
 
-       // $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('home', $data);
-
         if($user->BankAccount->count() <= 0){
 
             $BankAccountController->store();

@@ -36,6 +36,8 @@ Route::get('home/bank/sacar', [BankAccountController::class, 'sacar'])->name('ba
 Route::get('home/bank/depositar', [BankAccountController::class, 'depositar'])->name('bank.depositar');
 Route::put('home/bank/depositarConfirmado', [BankAccountController::class, 'depositConfirm'])->name('bank.depositConfirm');
 Route::put('home/bank/sacarConfirmado', [BankAccountController::class, 'withdrawConfirm'])->name('bank.withdrawConfirm');
+Route::get('home/bank/relatorio', [BankAccountController::class, 'report'])->name('bank.report');
+Route::post('home/bank/relatorio', [BankAccountController::class, 'reportPost'])->name('bank.reportPost');
 
 
 

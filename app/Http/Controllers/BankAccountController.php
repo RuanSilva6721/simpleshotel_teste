@@ -8,7 +8,7 @@ use App\Http\Requests\UpdateBankAccountRequest;
 use App\Services\BankAccountService;
 use Illuminate\Http\Request;
 use PHPUnit\Exception;
-
+use Illuminate\Support\Facades\DB;
 class BankAccountController extends Controller
 {
     private $BankAccountService;
@@ -57,7 +57,7 @@ class BankAccountController extends Controller
     {
         try {
             return $this->BankAccountService->withdrawConfirm($request);
-            
+
 
         } catch (Exception $e) {
             return redirect()->route('home')->with('msg2', 'Falha ao tentar saque na conta!');
@@ -72,4 +72,32 @@ class BankAccountController extends Controller
     {
 
     }
+    public function report()
+    {
+        $user = auth()->user();
+        $LogController =  new LogController();
+        $log = $user->Log()->get();
+        return view('report', ["log" => $log]);
+    }
+    public function reportPost(Request $request)
+    {
+        if($request->de_data){
+            $inicio = $request->de_data;
+        }else{
+            $inicio = '';
+        }
+        if($request->a_data){
+            $fim = $request->a_data;
+        }else{
+            $fim = '';  
+        }
+
+
+        $log = DB::table('logs')
+            ->where('date', '>=', $inicio)
+            ->orWhere('date', '<=', $fim)
+            ->get();
+        return view('report', ["log" => $log]);
+    }
+
 }
