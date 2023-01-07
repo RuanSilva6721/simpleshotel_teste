@@ -26,8 +26,9 @@ class BankAccountRepositoryEloquent implements BankAccountRepository{
 
     // }
     public function depositConfirm(Request $request, $id){
+        $user = auth()->user();
 
-        return DB::transaction(function () use ($request, $id) {
+        return DB::transaction(function () use ($request, $id, $user) {
 
             $log = new Log();
         $BankAccount = BankAccount::find($id);
@@ -35,8 +36,10 @@ class BankAccountRepositoryEloquent implements BankAccountRepository{
         if($data['MoneyDeposit']< 0){
                 $data['MoneyDeposit'] = 0;
         }
-        $log->action = "deposito";
+        $log->action = "depósito";
         $log->date = date("Y/m/d");
+        $log->value =$data['MoneyDeposit'];
+        $log->user_id = $user->id;
             $log->save();
         $BankAccount->balance = $data['MoneyDeposit'] + $BankAccount->balance;
         $BankAccount->update();
@@ -45,9 +48,9 @@ class BankAccountRepositoryEloquent implements BankAccountRepository{
 
     }
     public function withdrawConfirm(Request $request, $id){
+        $user = auth()->user();
 
-
-        return  DB::transaction(function () use ($request, $id) {
+        return  DB::transaction(function () use ($request, $id, $user) {
             $log = new Log();
         $BankAccount = BankAccount::find($id);
         $data = $request->all();
@@ -59,6 +62,8 @@ class BankAccountRepositoryEloquent implements BankAccountRepository{
         }else{
             $log->action = "saque";
             $log->date = date("Y/m/d");
+            $log->value =$data['MoneyWithdraw'];
+            $log->user_id = $user->id;
                 $log->save();
 
             $BankAccount->balance =  $BankAccount->balance - $data['MoneyWithdraw'];

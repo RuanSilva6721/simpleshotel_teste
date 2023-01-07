@@ -3,17 +3,27 @@
   </div>
 
 
-
   <script>
     const ctx = document.getElementById('myChart');
+    var array = JSON.parse('<?php echo $log; ?>');
+    let saldo = [];
+    let result = [];
+for (let i = 0; i < array.length; i++) {
+
+    result.push(array[i]['action']);
+}
+for (let i = 0; i < array.length; i++) {
+
+    saldo.push(array[i]['value']);
+}
 
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Orange2'],
+        labels: result,
         datasets: [{
           label: 'Saldo na Conta',
-          data: [12, 19, 3, 5, 2, 3, 29],
+          data: saldo,
           borderWidth: 1
         }]
       },

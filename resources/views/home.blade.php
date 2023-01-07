@@ -20,7 +20,7 @@
                 <div class="col-md-12  dashboard-title-container">
                     <h3>Ações</h3>
                 </div>
-               
+
                 @include('table')
 
             </div>
