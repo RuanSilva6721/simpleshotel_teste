@@ -20,11 +20,7 @@ class BankAccountRepositoryEloquent implements BankAccountRepository{
          });
 
     }
-    // public function edit($id){
 
-    //     return Car::findOrFail($id);
-
-    // }
     public function depositConfirm(Request $request, $id){
         $user = auth()->user();
 
@@ -77,15 +73,5 @@ class BankAccountRepositoryEloquent implements BankAccountRepository{
          });
 
     }
-    // public function destroy($id){
-
-    //       Car::findOrFail($id)->delete();
-
-    // }
-
-
-
-
-
 
     }
