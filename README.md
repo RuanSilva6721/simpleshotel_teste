@@ -88,13 +88,19 @@ Execute o comando abaixo para que as tabelas sejam criadas no banco de dados:
 php artisan migrate
 ```
 
+Caso queira dados fictícios para o seu usuário no banco:
+```bash
+php artisan db:seed
+```
+Caso queria fazer o testes unitários
 
-
-
-
+```bash
+php artisan test
+```
 
 
 
 ## Construído com
 
 * [Laravel](https://laravel.com/)
+
