@@ -92,10 +92,11 @@ Caso queira dados fictícios para o seu usuário no banco:
 ```bash
 php artisan db:seed
 ```
-Caso queria fazer o testes unitários
-
+Caso queria fazer o testes unitários:
+`.env`
+**Faça alteração da variavel `APP_URL=http://localhost` para `APP_URL=http://localhost:8000` no `.env`**
 ```bash
-php artisan test
+php artisan test e php artisan dusk
 ```
 
 
