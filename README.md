@@ -80,6 +80,7 @@ DB_USERNAME=root
 DB_PASSWORD=root
 
 Você deve acessar o workspace com o comando:
+
 ```bash
 docker-compose exec --user=laradock workspace bash
 ```
@@ -93,12 +94,27 @@ Caso queira dados fictícios para o seu usuário no banco:
 php artisan db:seed
 ```
 Caso queria fazer o testes unitários:
-`.env`
+
+
+
 **Faça alteração da variavel `APP_URL=http://localhost` para `APP_URL=http://localhost:8000` no `.env`**
+
+
+**Precisar ter a versão do Chrome => 109 e precisar ter iniciado o servidor da aplicação com ``bash
+php artisan serve
+``**
+
+
 ```bash
 php artisan test e php artisan dusk
 ```
 
+Caso não funcione instale os pacotes antes:
+
+
+```bash
+composer require --dev laravel/dusk e php artisan dusk:install
+```
 
 
 ## Construído com

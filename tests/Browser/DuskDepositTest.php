@@ -14,12 +14,15 @@ class DuskDepositTest extends DuskTestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testCheck_deposit_is_suces()
     {
         User::factory(10)->create();
         $this->browse(function ($browser) {
-            $browser->loginAs(User::find(1))
-                  ->visit('/home');
+            $browser->loginAs(User::first())
+                  ->visit('/home/bank/depositar')
+                  ->type('MoneyDeposit', 30)
+                  ->press('Depositar')
+                  ->assertPathIs('/home');
         });
     }
 }
